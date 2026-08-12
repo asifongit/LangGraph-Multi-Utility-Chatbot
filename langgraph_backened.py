@@ -22,11 +22,18 @@ import requests
 
 load_dotenv()
 
+import streamlit as st
+
+GROQ_API_KEY = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
+
+if not GROQ_API_KEY:
+    raise RuntimeError("GROQ_API_KEY is not configured")
 # -------------------
 # 1. LLM + embeddings
 # -------------------
 llm = ChatGroq(
     model="openai/gpt-oss-20b",
+    api_key=GROQ_API_KEY,
     
 )
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
