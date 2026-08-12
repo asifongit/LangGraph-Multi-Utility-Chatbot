@@ -3,7 +3,7 @@ import uuid
 import streamlit as st
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 
-from langgraph_rag_backened import (
+from langgraph_backened import (
     chatbot,
     ingest_pdf,
     retrieve_all_threads,
