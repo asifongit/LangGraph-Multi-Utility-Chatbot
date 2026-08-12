@@ -25,9 +25,14 @@ load_dotenv()
 import streamlit as st
 
 GROQ_API_KEY = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
+OPENAI_API_KEY = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
 
 if not GROQ_API_KEY:
     raise RuntimeError("GROQ_API_KEY is not configured")
+    
+if not OPENAI_API_KEY:
+    raise RuntimeError("OPENAI_API_KEY is not configured")
+
 # -------------------
 # 1. LLM + embeddings
 # -------------------
@@ -36,7 +41,7 @@ llm = ChatGroq(
     api_key=GROQ_API_KEY,
     
 )
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small", api_key=OPENAI_API_KEY)
 
 # -------------------
 # 2. PDF retriever store (per thread)
