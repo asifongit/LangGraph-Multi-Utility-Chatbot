@@ -11,3 +11,4 @@ streamlit
 requests
 faiss-cpu
 ddgs
+pypdf
